@@ -1,0 +1,39 @@
+<form [formGroup]="expenseForm" (ngSubmit)="onSubmit(expenseForm)"
+    class="d-flex align-items-start justify-content-center flex-column m-5 ">
+    <div class="container">
+        <div class="my-4">
+            <label>Title:</label>
+            <input class="form-control" formControlName="title" type="text" />
+            <div *ngIf="title?.touched && title?.invalid" class="error text-danger">
+                <div *ngIf="title?.errors?.['required']">
+                    This is required.
+                </div>
+                <div *ngIf="title?.errors?.['minLength']">
+                    Length should be more than 3.
+                </div>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <label>Date:</label>
+            <input type="date" class="form-control" formControlName="date" />
+            <div *ngIf="date?.touched && date?.invalid" class="error text-danger">
+                <div *ngIf="date?.errors?.['required']">
+                    This is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="my-4">
+            <label>Amount:</label>
+            <input type="text" class="form-control" formControlName="amount" />
+            <div *ngIf="amount?.touched && amount?.invalid" class="error text-danger">
+                <div *ngIf="amount?.errors?.['required']">
+                    This is required.
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="Submit" (disabled)="expenseForm.invalid" />
+    </div>
+</form>
